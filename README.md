@@ -209,7 +209,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/ashaik65/DevSecOps-Practical.git'
+                git branch: 'master', url: 'https://github.com/unpaid2/DevSecOps-Practical.git'
             }
         }
         stage("Sonarqube Analysis") {
