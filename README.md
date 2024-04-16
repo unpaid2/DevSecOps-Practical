@@ -744,7 +744,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/ashaik65/DevSecOps-Practical.git'
+                git branch: 'master', url: 'https://github.com/unpaid2/DevSecOps-Practical.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -783,20 +783,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build --build-arg TMDB_V3_API_KEY=<your key> -t netflix ."
-                       sh "docker tag netflix ashaik65/netflix:latest "
-                       sh "docker push ashaik65/netflix:latest "
+                       sh "docker tag netflix omkar2126/netflix:latest "
+                       sh "docker push omkar2126/netflix:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image ashaik65/netflix:latest > trivyimage.txt" 
+                sh "trivy image omkar2126/netflix:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d  -p 8081:80 ashaik65/netflix:latest'
+                sh 'docker run -d  -p 8081:80 omkar2126/netflix:latest'
             }
         }
     }
